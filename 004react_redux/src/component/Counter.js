@@ -6,14 +6,14 @@ class Counter extends React.Component {
         return (
             <div>
                 {console.log("dddd",this.props)}
-                <p id="counter">{this.props.num}</p>
+                <p id="counter">{this.props.counterReducer.num}</p>
                 <button onClick={() => this.props.add(2)}>+</button>
                 <button onClick={() => this.props.sub(3)}>-</button>
             </div>
         )
     }
 }
-let mapStateToProps=(state)=>state.Counter
+let mapStateToProps=(state)=>state.counterReducer
 
 const  resCounter=Connect(mapStateToProps,actions)(Counter)
 export default resCounter

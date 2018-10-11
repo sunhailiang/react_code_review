@@ -7,13 +7,12 @@ import { bindActionCreator } from "../redux"
 export default function (mapStateToProps, mapDispatchToProps) {
     return function (Com) {
         //组件内实现仓库和组件链接
+      
         class Proxy extends React.Component {
             //拿到最终reduce后的状态
+            state=mapStateToProps(this.props.store.getState())
             componentDidMount() {
-                mapStateToProps(this.props.store.getState())
-                console.log("XXXX",this.props.store.getState())
-				
-                console.log("props", mapStateToProps(this.props.store.getState()))//undefined
+                // console.log("props", mapStateToProps(this.props.store.getState()))//undefined
 				
                 this.unsubscribe = this.props.store.subscribe(() => {
                     this.setState(mapStateToProps(this.props.store.getState()))

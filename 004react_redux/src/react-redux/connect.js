@@ -29,7 +29,6 @@ export default function (mapStateToProps, mapDispatchToProps) {
                     actions = mapDispatchToProps(this.props.store.dispatch)
                     //如果是一个对象，手动绑定
                 } else {
-                    console.log("not function", this.props.store.dispatch)
                     actions = bindActionCreator(mapDispatchToProps, this.props.store.dispatch)
                 }
                 return <Com {...this.props.store.getState()}{...actions} />

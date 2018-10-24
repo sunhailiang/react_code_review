@@ -10,7 +10,6 @@ export default function (reducers) {
             //state就是合并后的状态树
             newState[key] = reducers[key](state[key], action)
         }
-        console.log("action",newState)
         return newState
     }   
 }

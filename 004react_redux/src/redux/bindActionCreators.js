@@ -8,7 +8,6 @@ export default function (actions, dispatch) {
     return Object.keys(actions).reduce(
         (memo, key) => {
             memo[key] = (...args) => dispatch(actions[key](...args)); //...args可以传参
-            console.log("memo", memo)
             return memo
         }, {}) //简洁写法
 

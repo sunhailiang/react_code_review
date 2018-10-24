@@ -1,4 +1,9 @@
-export default function CreateStore(reducer) {
+export default function CreateStore(reducer, initState, enchancer) {
+    //store=createStore(reducer,{},applyMiddleware(thunk,CreateStore,reducer))对应中间件使用的兼容性写法
+    if (enchancer) {
+        return enchancer(CreateStore)(reducer, initState)
+    }
+
     let state;//仓库内部保存一棵状态树（任意类型）
     let listeners = [];//用来状态改变
     function getState() {
@@ -15,8 +20,8 @@ export default function CreateStore(reducer) {
     function subscribe(listener) { //获取需要重新渲染的组件
         listeners.push(listener)
         //取消订阅
-        return function (){
-            listeners=listeners.filter(item=>item!=listener)
+        return function () {
+            listeners = listeners.filter(item => item !== listener)
         }
     }
     dispatch({ type: "@@init" })//此处只要有个对象随便写，只要不与发布任务的type相同即可
